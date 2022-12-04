@@ -37,7 +37,15 @@ export function TokenModal({ onHide, token }: Props) {
           <Modal.Body>
             <Image src={token.image} />
             <Label>Contract</Label>
-            <Value>{token.contract}</Value>
+            <Value>
+              <a
+                target="_blank"
+                href={`https://etherscan.io/address/${token.contract}`}
+                rel="noreferrer"
+              >
+                {token.contract}
+              </a>
+            </Value>
             <Label>Token ID</Label>
             <Value>{token.id}</Value>
           </Modal.Body>

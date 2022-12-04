@@ -4,6 +4,7 @@
   ```bash
     npm ci
     npm run start
+    # visit localhost:3000
   ```
 
 ### Things to improve
@@ -13,3 +14,4 @@
 * Validate incoming data (don't trust external APIs)
 * Handle errors
 * Proper data "loading" view
+* Add "transfer NFT" feature
