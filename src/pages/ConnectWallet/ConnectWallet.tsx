@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import { injectedConnector } from "lib/injectedConnector";
 import styled from "styled-components/macro";
+import useMount from "react-use/lib/useMount";
 
 import metamaskLogo from "./metamask-icon.webp";
 
@@ -39,9 +40,19 @@ const ConnectButton = styled.button`
 export function ConnectWallet() {
   const { activate } = useWeb3React<Web3Provider>();
 
+  useMount(() => {
+    if (!localStorage.getItem("metamask")) return;
+    activate(injectedConnector);
+  });
+
+  function connect() {
+    activate(injectedConnector);
+    localStorage.setItem("metamask", "true");
+  }
+
   return (
     <Root>
-      <ConnectButton onClick={() => activate(injectedConnector)}>
+      <ConnectButton onClick={connect}>
         <MetamaskLogo src={metamaskLogo} />
       </ConnectButton>
     </Root>

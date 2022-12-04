@@ -20,13 +20,12 @@ const StyledNavbar = styled(Navbar)`
 export function ViewTokens() {
   const { deactivate, account } = useWeb3React<Web3Provider>();
 
-  /**
-   * Since I don't have any NFTs on my account and test network faucet does not work I use override.
-   * If address query param is present, I use that address instead of the connected account
-   */
   const tokensQuery = useTokensQuery(getQueryParams().address ?? account);
 
-  const tokens = tokensQuery.data;
+  function disconnect() {
+    deactivate();
+    localStorage.removeItem("metamask");
+  }
 
   return (
     <Root>
@@ -36,12 +35,12 @@ export function ViewTokens() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end">
             <NavDropdown align="end" title={truncate(account ?? "")} id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={deactivate}>Disconnect</NavDropdown.Item>
+              <NavDropdown.Item onClick={disconnect}>Disconnect</NavDropdown.Item>
             </NavDropdown>
           </Navbar.Collapse>
         </Container>
       </StyledNavbar>
-      {tokens ? <TokenList tokens={tokens} /> : <>Loading...</>}
+      {tokensQuery.data ? <TokenList tokens={tokensQuery.data} /> : <>Loading...</>}
     </Root>
   );
 }
