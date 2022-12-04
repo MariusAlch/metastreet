@@ -12,7 +12,7 @@
 ### Note
   If `address` query parameter is provided then that is used to receive nft assets (not wallet address that is active). This is for testing purposes.
 
-  Example - http://localhost:3000/address=0xc66D38f01E5BdEA8a8926A1661A19D05E98e6455 
+  Example - http://localhost:3000?address=0xc66D38f01E5BdEA8a8926A1661A19D05E98e6455 
 
 ### Things to improve
 * Don't use bootstrap
