@@ -1,5 +1,7 @@
 # MetaStreet
 
+![screenshot](./screenshot.png)
+
 ### Running the app
   ```bash
     npm ci
